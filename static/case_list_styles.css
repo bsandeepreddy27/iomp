@@ -19,6 +19,7 @@ h1 {
     color: #333;
 }
 
+/* Form Styles */
 form {
     background-color: #fff;
     padding: 20px;
@@ -26,6 +27,7 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: inline-block;
     text-align: left;
+    animation: fadeIn 0.5s ease-in-out; /* Animation for form */
 }
 
 form p {
@@ -53,13 +55,15 @@ form button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 form button:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Scale effect on hover */
 }
 
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -79,6 +83,7 @@ th {
     background-color: #f2f2f2;
 }
 
+/* Button Styles */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -87,8 +92,22 @@ th {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

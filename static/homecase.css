@@ -1,4 +1,5 @@
 /* static/homecase.css */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -52,7 +53,7 @@ button, .btn {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
     text-decoration: none;
     display: inline-block;
     margin-top: 20px;
@@ -60,6 +61,7 @@ button, .btn {
 
 button:hover, .btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Scale effect on hover */
 }
 
 button[type="submit"] {
@@ -114,6 +116,7 @@ button[type="submit"] {
     max-width: 400px;
     border-radius: 10px;
     text-align: center;
+    animation: slideIn 0.5s ease-in-out; /* Animation for modal content */
 }
 
 .close {
@@ -143,3 +146,16 @@ button[type="submit"] {
 .modal button:hover {
     background-color: #0056b3;
 }
+
+/* Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
