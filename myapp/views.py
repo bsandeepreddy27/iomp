@@ -65,7 +65,8 @@ def add_case(request):
     return render(request, 'add_case.html', {'form': form})
 
 def edit_case(request, case_id):
-    case = get_object_or_404(Case, pk=case_id)
+    # Retrieve the case object
+    case = Case.objects.get(pk=case_id)
     
     if request.method == 'POST':
         form = CaseForm(request.POST, instance=case)
@@ -75,7 +76,16 @@ def edit_case(request, case_id):
     else:
         form = CaseForm(instance=case)
     
-    return render(request, 'edit_case.html', {'form': form})
+    return render(request, 'edit_case.html', {'form': form, 'case': case})
+
+
+
+def delete_case(request, case_id):
+    if request.method == 'POST':
+        case = Case.objects.get(pk=case_id)
+        case.delete()
+        return redirect('case_list')
+    return redirect('edit_case', case_id=case_id)
 
 @login_required
 def change_password(request):
@@ -99,3 +109,4 @@ def logout(request):
 def custom_logout(request):
     logout(request)
     return render(request, 'logout.html')
+

@@ -17,8 +17,37 @@
             {{ form.as_p }}
             <!-- Include form fields to edit case details -->
             <button type="submit">Save Changes</button>
+            <a href="{% url 'case_list' %}" class="cancel-btn">Cancel</a>
+            
+            <!-- Add the delete button -->
+            <button type="button" onclick="showDeleteConfirmation()">Delete Case</button>
         </form>
-        <a href="{% url 'case_list' %}">Back to Case List</a>
     </div>
+
+    <!-- Confirmation message popups -->
+    <div id="deleteConfirmation" class="confirmation-popup">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete this case?</p>
+        <div class="btn-wrapper">
+            <button class="btn" onclick="confirmDelete()">Delete</button>
+            <button class="btn cancel-btn" onclick="cancelDelete()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- JavaScript functions for confirmation messages -->
+    <script>
+        function showDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'block';
+        }
+
+        function confirmDelete() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+            // Add JavaScript logic to handle deletion
+        }
+
+        function cancelDelete() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

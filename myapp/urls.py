@@ -11,7 +11,9 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
     path('cases/<int:case_id>/edit/', views.edit_case, name='edit_case'),
+    path('cases/<int:case_id>/delete/', views.delete_case, name='delete_case'),
     path('change-password/', views.change_password, name='change_password'),
     path('logout/', views.custom_logout, name='logout'),
+    
 ]
 
