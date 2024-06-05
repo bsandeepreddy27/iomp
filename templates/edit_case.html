@@ -13,9 +13,11 @@
         <h1>Edit Case</h1>
         <form method="post">
             {% csrf_token %}
+            {{ form.as_p }}
             <!-- Include form fields to edit case details -->
             <button type="submit">Save Changes</button>
         </form>
+        <a href="{% url 'case_list' %}">Back to Case List</a>
     </div>
 </body>
 </html>
