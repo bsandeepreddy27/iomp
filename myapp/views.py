@@ -8,7 +8,7 @@ from .models import Case
 from .forms import CaseForm
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 def signup_view(request):
     if request.method == 'POST':
