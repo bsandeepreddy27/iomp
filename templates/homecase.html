@@ -1,5 +1,4 @@
 <!-- templates/homecase.html -->
-
 {% load static %} <!-- Load the static template tag -->
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +6,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'homecase.css' %}">
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-right">
+            <p>Welcome, {{ user.username }}</p>
+            <a href="{% url 'change_password' %}">Change Password</a>
+            <a href="#" id="logoutLink">Logout</a>
+        </div>
+    </div>
+    
     <div class="container">
         <h1>Welcome to Our Court Case Management System</h1>
         <p>This system helps you manage court cases efficiently and assign judges to them.</p>
         <a href="{% url 'case_list' %}" class="btn">View Cases</a>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <p>Are you sure you want to logout?</p>
+            <button id="confirmLogoutBtn">Yes</button>
+            <button id="cancelLogoutBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        // Get modal elements
+        var modal = document.getElementById("logoutModal");
+        var logoutLink = document.getElementById("logoutLink");
+        var closeModal = document.getElementById("closeModal");
+        var confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+        var cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+
+        // Open modal when logout link is clicked
+        logoutLink.onclick = function(event) {
+            event.preventDefault();
+            modal.style.display = "block";
+        }
+
+        // Close modal when close button or cancel button is clicked
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        cancelLogoutBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Confirm logout
+        confirmLogoutBtn.onclick = function() {
+            window.location.href = "{% url 'logout' %}";
+        }
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
