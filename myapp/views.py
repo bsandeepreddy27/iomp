@@ -7,8 +7,15 @@ from django.urls import reverse
 from .models import Case
 from .forms import CaseForm
 
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
+@login_required
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'home.html', {'user': request.user})
 
 def signup_view(request):
     if request.method == 'POST':
@@ -37,9 +44,11 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
-
+@login_required
 def home_view(request):
-    return render(request, 'homecase.html')
+    return render(request, 'homecase.html', {'user': request.user})
+    
+
 
 def case_list(request):
     cases = Case.objects.all()
@@ -68,3 +77,25 @@ def edit_case(request, case_id):
     
     return render(request, 'edit_case.html', {'form': form})
 
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('home')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {'form': form})
+
+
+def logout(request):
+    if request.method == 'POST':
+        # Perform logout operation here
+        return redirect('home')
+    return render(request, 'logout.html')
+
+def custom_logout(request):
+    logout(request)
+    return render(request, 'logout.html')
