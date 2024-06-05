@@ -1,0 +1,21 @@
+<!-- edit_case.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Case</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Case</h1>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Include form fields to edit case details -->
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

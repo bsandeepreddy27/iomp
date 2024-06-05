@@ -1,0 +1,41 @@
+windows right click run
+services.msc
+
+
+1. create database case;
+
+
+2. create table customer(
+	sid int primary key AUTO_INCREMENT,
+      name varchar(50),
+      rollno varchar(20),
+      branch varchar(10),
+      emailid varchar(50),
+      contact varchar(20),
+      username varchar(20),
+      password varchar(20)
+);
+
+
+3. create table user(
+	sid int AUTO_INCREMENT,
+      username varchar(20),
+      password varchar(20)
+);
+
+
+
+4. create table contact(
+      name varchar(40),
+      email varchar(30),
+      message varchar(200)
+);
+
+
+5. create table card_details(
+      firstname varchar(40),
+      lastname varchar(30),
+      ccnum varchar(20),
+	ccvv varchar(10),
+	ccexp varchar(15)
+);

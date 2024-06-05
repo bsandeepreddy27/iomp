@@ -1,0 +1,38 @@
+<!-- templates/case_list.html -->
+<!-- case_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Case List</h1>
+        <table border="1">
+            <tr>
+                <th>Case Name</th>
+                <th>Judge</th>
+                <th>Category</th>
+                <th>Estimated Time to Close</th>
+                <th>Action</th>
+            </tr>
+            {% for case in cases %}
+            <tr>
+                <td>{{ case.name }}</td>
+                <td>{{ case.judge.name }}</td>
+                <td>{{ case.get_category_display }}</td>
+                <td>{{ case.estimated_time_to_close }}</td>
+                <td><a href="{% url 'edit_case' case.id %}" class="btn">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'add_case' %}" class="btn">Add Case</a> 
+    </div>
+</body>
+</html>
+
+
