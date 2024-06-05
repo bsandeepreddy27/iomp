@@ -56,14 +56,15 @@ def add_case(request):
     return render(request, 'add_case.html', {'form': form})
 
 def edit_case(request, case_id):
-    case = get_object_or_404(Case, id=case_id)
+    case = get_object_or_404(Case, pk=case_id)
     
     if request.method == 'POST':
-        # Handle form submission and update the case in MySQL
-        # Redirect to case list page or show a success message
-        pass  # Placeholder for POST request handling
+        form = CaseForm(request.POST, instance=case)
+        if form.is_valid():
+            form.save()
+            return redirect('case_list')
+    else:
+        form = CaseForm(instance=case)
     
-    # Render the edit_case.html template for GET requests
-    return render(request, 'edit_case.html', {'case': case})
-
+    return render(request, 'edit_case.html', {'form': form})
 
