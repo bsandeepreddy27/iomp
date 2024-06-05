@@ -1,3 +1,4 @@
+# caseproject/settings.py
 """
 Django settings for caseproject project.
 
