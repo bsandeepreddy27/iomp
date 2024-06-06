@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-bta-q#okc36lo3(&$2eg70rk(h_ty^*$v^o%e+y$7yc(2hxo*b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.29.91', '127.0.0.1']
+ALLOWED_HOSTS = [ '127.0.0.1']
 
 
 # Application definition
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'caseproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates'],
+        'DIRS': [BASE_DIR, 'templates',''],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
