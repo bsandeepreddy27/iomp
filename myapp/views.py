@@ -67,18 +67,21 @@ def add_case(request):
 
 @login_required
 def edit_case(request, case_id):
-    # Retrieve the case object
-    case = Case.objects.get(pk=case_id)
+    case = get_object_or_404(Case, id=case_id)
     
     if request.method == 'POST':
-        form = CaseForm(request.POST, instance=case)
-        if form.is_valid():
-            form.save()
+        if request.POST.get('delete') == 'true':
+            case.delete()
             return redirect('case_list')
+        else:
+            form = CaseForm(request.POST, instance=case)
+            if form.is_valid():
+                form.save()
+                return redirect('case_list')
     else:
         form = CaseForm(instance=case)
-    
-    return render(request, 'edit_case.html', {'form': form, 'case': case})
+
+    return render(request, 'edit_case.html', {'form': form})
 
 
 @login_required
