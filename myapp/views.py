@@ -13,9 +13,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
 
-@login_required
+
 def home(request):
-    return render(request, 'home.html', {'user': request.user})
+    return render(request, 'index.html', {'user': request.user})
 
 def signup_view(request):
     if request.method == 'POST':
@@ -49,11 +49,12 @@ def home_view(request):
     return render(request, 'homecase.html', {'user': request.user})
     
 
-
+@login_required
 def case_list(request):
     cases = Case.objects.all()
     return render(request, 'case_list.html', {'cases': cases})
 
+@login_required
 def add_case(request):
     if request.method == 'POST':
         form = CaseForm(request.POST)
@@ -64,6 +65,7 @@ def add_case(request):
         form = CaseForm()
     return render(request, 'add_case.html', {'form': form})
 
+@login_required
 def edit_case(request, case_id):
     # Retrieve the case object
     case = Case.objects.get(pk=case_id)
@@ -79,7 +81,7 @@ def edit_case(request, case_id):
     return render(request, 'edit_case.html', {'form': form, 'case': case})
 
 
-
+@login_required
 def delete_case(request, case_id):
     if request.method == 'POST':
         case = Case.objects.get(pk=case_id)
@@ -99,13 +101,14 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'change_password.html', {'form': form})
 
-
+@login_required
 def logout(request):
     if request.method == 'POST':
         # Perform logout operation here
         return redirect('home')
     return render(request, 'logout.html')
 
+@login_required
 def custom_logout(request):
     logout(request)
     return render(request, 'logout.html')
