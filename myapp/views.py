@@ -15,7 +15,7 @@ from django.contrib.auth import logout
 
 
 def home(request):
-    return render(request, 'index.html', {'user': request.user})
+    return render(request, 'home.html', {'user': request.user})
 
 def signup_view(request):
     if request.method == 'POST':
